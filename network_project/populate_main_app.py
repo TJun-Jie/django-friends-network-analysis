@@ -33,7 +33,7 @@ def add_friendship():
         if(student):
             # add popular kid as friend 
             if( i != popular_kid_id-1):
-                friendship  = Friendship1( student = student1, friend = popular_kid)
+                friendship  = Friendship1( student = student, friend = popular_kid)
                 friendship.save()
             # if the student is the popular kid, then add some random guy
             else:

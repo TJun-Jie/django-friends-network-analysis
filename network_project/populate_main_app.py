@@ -7,7 +7,7 @@ django.setup()
 #Fake script
 
 import random 
-from main_app.models import Student, Friendship
+from main_app.models import Student, Friendship1
 from faker import Faker
 
 fakegen =Faker()

@@ -7,7 +7,7 @@ class Student(models.Model):
     def __str__(self):
         return self.name
 
-class Friendship(models.Model):
-    friend1 = models.ForeignKey(Student,related_name="friend1",on_delete=models.CASCADE)
-    friend2 = models.ForeignKey(Student,related_name="friend2",on_delete=models.CASCADE)
-    friend3 = models.ForeignKey(Student,related_name="friend3",on_delete=models.CASCADE)
+class Friendship1(models.Model):
+    student = models.ForeignKey(Student,related_name="student",on_delete=models.CASCADE)
+    friend = models.ForeignKey(Student,related_name="friend",on_delete=models.CASCADE)
+    

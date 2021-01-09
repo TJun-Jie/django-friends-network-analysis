@@ -38,15 +38,15 @@ def add_friendship():
 
                 # List of random numbers without popular kid and student
                 my_list = list(x for x in range(1,number_of_students+1) if x not in [popular_kid_id,i])
-                new_list =my_list.shuffle()
+                random.shuffle(my_list)
 
                 # Add random friend 1
-                r_friend =Student.objects.get(pk=new_list[-1])
+                r_friend =Student.objects.get(pk=my_list[-1])
                 friendship  = Friendship1( student = student, friend = r_friend)
                 friendship.save()
 
                 # Add random friend 2
-                r_friend2 =Student.objects.get(pk=new_list[-2])
+                r_friend2 =Student.objects.get(pk=my_list[-2])
                 friendship  = Friendship1(student = student, friend = r_friend2)
                 friendship.save()
 
@@ -54,20 +54,20 @@ def add_friendship():
             else:
                  # List of random numbers without popular kid and student
                 my_list = list(x for x in range(1,number_of_students+1) if x not in [i])
-                new_list =my_list.shuffle()
+                random.shuffle(my_list)
 
                 # Add random friend 1
-                r_friend =Student.objects.get(pk=new_list[-1])
+                r_friend =Student.objects.get(pk=my_list[-1])
                 friendship  = Friendship1( student = student, friend = r_friend)
                 friendship.save()
 
                 # Add random friend 2
-                r_friend2 =Student.objects.get(pk=new_list[-2])
+                r_friend2 =Student.objects.get(pk=my_list[-2])
                 friendship  = Friendship1(student = student, friend = r_friend2)
                 friendship.save()
 
                 # Add random friend 3
-                r_friend3 =Student.objects.get(pk=new_list[-3])
+                r_friend3 =Student.objects.get(pk=my_list[-3])
                 friendship  = Friendship1(student = student, friend = r_friend3)
                 friendship.save()
     

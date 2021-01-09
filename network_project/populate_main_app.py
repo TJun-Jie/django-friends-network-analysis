@@ -70,8 +70,14 @@ def add_friendship():
                 r_friend3 =Student.objects.get(pk=my_list[-3])
                 friendship  = Friendship1(student = student, friend = r_friend3)
                 friendship.save()
+
+def show_students():
+    number_of_students = Student.objects.all()
+    for student in number_of_students:
+        print(student.id)
+
     
 if __name__ =='__main__':
     print('populating script!')
-    add_friendship()
+    show_students()
     print("Populating complete!")

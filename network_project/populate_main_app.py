@@ -23,12 +23,13 @@ def add_student(N=10):
 # every student will choose the popular student as their friend (except the popular student himself)
 # other than that the student will choose his own friend
 def add_friendship():
-    number_of_students = Student.objects.all().count()
+    # number_of_students = Student.objects.all().count()
+    number_of_students = 20
 
-    popular_kid_id = 3
+    popular_kid_id = 29
     popular_kid = Student.objects.get(pk=popular_kid_id)
 
-    for i in range(1,number_of_students +1):
+    for i in range(26, 25 + number_of_students +1):
         student = Student.objects.get(pk=i)
         if(student):
             # add popular kid as friend 
@@ -37,7 +38,7 @@ def add_friendship():
                 friendship.save()
 
                 # List of random numbers without popular kid and student
-                my_list = list(x for x in range(1,number_of_students+1) if x not in [popular_kid_id,i])
+                my_list = list(x for x in range(26, 25 + number_of_students +1) if x not in [popular_kid_id,i])
                 random.shuffle(my_list)
 
                 # Add random friend 1
@@ -53,7 +54,7 @@ def add_friendship():
             # if the student is the popular kid, then add some random guy
             else:
                  # List of random numbers without popular kid and student
-                my_list = list(x for x in range(1,number_of_students+1) if x not in [i])
+                my_list = list(x for x in range(26, 25 + number_of_students +1) if x not in [i])
                 random.shuffle(my_list)
 
                 # Add random friend 1
@@ -75,9 +76,16 @@ def show_students():
     number_of_students = Student.objects.all()
     for student in number_of_students:
         print(student.id)
+    print("Total number:" , number_of_students.count())
+    # all_friendships  = Friendship1.objects.all()
+    # for friendship in all_friendships:
+    #     print(friendship.student.name)
+    #     print(friendship.friend.name)
 
     
 if __name__ =='__main__':
     print('populating script!')
+    # add_student(20)
     show_students()
+    # add_friendship()
     print("Populating complete!")

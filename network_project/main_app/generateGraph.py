@@ -1,18 +1,41 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 import io
+import numpy as np
+
+from .models import Student, Friendship1
+
+
+
 
 def create_graph():   
-    G = nx.Graph()
-    # rectanle width 1.5
-    G.add_node('root')
-    G.add_node('red')
-    G.add_node('blue')
-    # label: to_red
-    G.add_edge('root', 'red')
-    # label: to_blue
-    G.add_edge('root', 'blue')
-    nx.draw(G)
+    all_students = Student.objects.all()
+    all_friendships  = Friendship1.objects.all()
+
+    G = nx.DiGraph()
+
+    for student in all_students:
+        G.add_node(student.id)
+    for friendship in all_friendships:
+        G.add_edge(friendship.student.id, friendship.friend.id)
+
+    degrees = [G.degree[a] for a in G.nodes]
+    degrees_unique = sorted(list(set(degrees)))
+    y_positions = {degrees_unique[i] : i for i in range(len(degrees_unique))}
+    x_positions = {}
+
+    for degree in degrees_unique:
+        x_positions[degree] = [a for a in degrees.count(degree) / 2. - np.arange(degrees.count(degree))]
+
+    positions = {}
+
+    for node in G.nodes:
+        deg = G.degree[node]
+        positions[node] = (x_positions[deg].pop(), y_positions[deg])
+
+
+    nx.draw_networkx(G, pos=positions, node_size=200)
+    # nx.draw_networkx(G)
     buf = io.BytesIO()
     plt.savefig(buf, format='svg', bbox_inches='tight')
     image_bytes = buf.getvalue().decode('utf-8')

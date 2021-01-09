@@ -28,18 +28,48 @@ def add_friendship():
     popular_kid_id = 3
     popular_kid = Student.objects.get(pk=popular_kid_id)
 
-    for i in range(number_of_students):
-        student = Student.objects.get(pk=i+1)
+    for i in range(1,number_of_students +1):
+        student = Student.objects.get(pk=i)
         if(student):
             # add popular kid as friend 
-            if( i != popular_kid_id-1):
+            if( i != popular_kid_id):
                 friendship  = Friendship1( student = student, friend = popular_kid)
                 friendship.save()
+
+                # List of random numbers without popular kid and student
+                my_list = list(x for x in range(1,number_of_students+1) if x not in [popular_kid_id,i])
+                new_list =my_list.shuffle()
+
+                # Add random friend 1
+                r_friend =Student.objects.get(pk=new_list[-1])
+                friendship  = Friendship1( student = student, friend = r_friend)
+                friendship.save()
+
+                # Add random friend 2
+                r_friend2 =Student.objects.get(pk=new_list[-2])
+                friendship  = Friendship1(student = student, friend = r_friend2)
+                friendship.save()
+
             # if the student is the popular kid, then add some random guy
             else:
+                 # List of random numbers without popular kid and student
+                my_list = list(x for x in range(1,number_of_students+1) if x not in [i])
+                new_list =my_list.shuffle()
 
-            # add a random dude (cannot be himself)
-            if()
+                # Add random friend 1
+                r_friend =Student.objects.get(pk=new_list[-1])
+                friendship  = Friendship1( student = student, friend = r_friend)
+                friendship.save()
+
+                # Add random friend 2
+                r_friend2 =Student.objects.get(pk=new_list[-2])
+                friendship  = Friendship1(student = student, friend = r_friend2)
+                friendship.save()
+
+                # Add random friend 3
+                r_friend3 =Student.objects.get(pk=new_list[-3])
+                friendship  = Friendship1(student = student, friend = r_friend3)
+                friendship.save()
     
 if __name__ =='__main__':
     print('populating script!')

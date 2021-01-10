@@ -7,7 +7,7 @@ from .generateGraph import create_graph
 image_bytes = create_graph()
 def index(request):
     context_dict = { 'data' : image_bytes}
-    return render(request, 'main_app/index.html', context_dict )
+    return render(request, 'index.html', context_dict )
 
 
 def get_form(request):
@@ -26,4 +26,4 @@ def get_form(request):
     else:
         form = InputForm()
 
-    return render(request, 'main_app/forms.html', {'form': form})
+    return render(request, 'forms.html', {'form': form})

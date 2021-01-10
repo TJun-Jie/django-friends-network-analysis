@@ -2,9 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import InputForm
 from .generateGraph import create_graph
+
 # Create your views here.
 
 image_bytes = create_graph()
+
 def index(request):
     context_dict = { 'data' : image_bytes}
     return render(request, 'index.html', context_dict )

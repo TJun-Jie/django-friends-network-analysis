@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import InputForm
 from .generateGraph import create_graph
+from .tables import create_table
 
 # Create your views here.
 
@@ -29,3 +30,7 @@ def get_form(request):
         form = InputForm()
 
     return render(request, 'forms.html', {'form': form})
+
+def tables(request):
+    context_tables = {'tables':create_table()}
+    return render(request, 'tables.html',context = context_tables)

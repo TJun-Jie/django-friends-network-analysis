@@ -36,7 +36,7 @@ def create_graph():
         positions[node] = (x_positions[deg].pop(), y_positions[deg])
 
 
-    nx.draw_networkx(G, pos=positions, node_size=200)
+    nx.draw_networkx(G, pos=positions, node_size=300)
     # nx.draw_networkx(G)
     buf = io.BytesIO()
     plt.savefig(buf, format='svg', bbox_inches='tight')

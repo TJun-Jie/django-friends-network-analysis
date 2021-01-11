@@ -4,20 +4,36 @@
     {% block body_block %}
     <table>
         <thead>
-            <th>Student ID</th>
-            <th>Student Name</th>
-            <th>Friend 1</th>
-            <th>Friend 2</th>
-            <th>Friend 3</th>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Friend 1</th>
+                <th>Friend 2</th>
+                <th>Friend 3</th>
+            </tr>
         </thead>
-        {% for k,v in tables %}
-            <th>{{ k }}</th>
-            {% for x in range(3) %}
-                {% for k,v in tables %}
-                    <th>{{v[x]}}</th>
-                {% endefor %}
-            {% endefor %}
-        {% endefor %}
+        <tbody>
+            {% for k,v in tables.items %}
+                <tr>
+                    <td>
+                        {{ k }}
+                    </td>
+                    <td>
+                        {{ v.0 }}
+                    </td>
+                    <td>
+                        {{ v.1 }}
+                    </td>
+                    <td>
+                        {{ v.2 }}
+                    </td>
+                    <td>
+                        {{ v.3}}
+                    </td>
+                </tr>
+                
+            {% endfor %}
+        </tbody>
     </table>
 
     {% endblock body_block %}

@@ -24,12 +24,12 @@ def add_student(N=10):
 # other than that the student will choose his own friend
 def add_friendship():
     # number_of_students = Student.objects.all().count()
-    number_of_students = 20
+    number_of_students = 40
 
-    popular_kid_id = 65
+    popular_kid_id = 23
     popular_kid = Student.objects.get(pk=popular_kid_id)
 
-    for i in range(47, 46 + number_of_students +1):
+    for i in range(1, 1 + number_of_students ):
         student = Student.objects.get(pk=i)
         if(student):
             # add popular kid as friend 
@@ -38,7 +38,7 @@ def add_friendship():
                 friendship.save()
 
                 # List of random numbers without popular kid and student
-                my_list = list(x for x in range(47, 46 + number_of_students +1) if x not in [popular_kid_id,i])
+                my_list = list(x for x in range(1, 1 + number_of_students +1) if x not in [popular_kid_id,i])
                 random.shuffle(my_list)
 
                 # Add random friend 1
@@ -54,7 +54,7 @@ def add_friendship():
             # if the student is the popular kid, then add some random guy
             else:
                  # List of random numbers without popular kid and student
-                my_list = list(x for x in range(47, 46 + number_of_students +1) if x not in [i])
+                my_list = list(x for x in range(1, 1 + number_of_students +1) if x not in [i])
                 random.shuffle(my_list)
 
                 # Add random friend 1
@@ -85,7 +85,7 @@ def show_students():
     
 if __name__ =='__main__':
     print('populating script!')
-    # add_student(20)
+    add_student(40)
     # show_students()
     add_friendship()
     print("Populating complete!")
